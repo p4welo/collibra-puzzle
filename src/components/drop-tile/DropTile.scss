@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+@import "../../styles/variables";
+
+.DropTile {
+  background: white;
+  height: $tileSize - 2 * $borderWidth;
+  width: $tileSize - 2 * $borderWidth;
+  border: $borderWidth solid $blue;
+
+  &--done {
+    background: transparent;
+  }
+
+  &--hovered {
+    background: yellow;
+  }
+}

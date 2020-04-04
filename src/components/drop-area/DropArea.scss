@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+@import '../../styles/variables';
+
+.DropArea {
+  background-image: url("../../images/logo.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid $blue;
+  height: 3 * $tileSize;
+  width: 3 * $tileSize;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

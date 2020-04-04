@@ -1,0 +1,41 @@
+@import "../../styles/colors";
+@import "../../styles/variables";
+
+.DragArea {
+  background: $red;
+  min-height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.DragArea__drag-tile {
+  height: $tileSize - 2 * $borderWidth;
+  width: $tileSize - 2 * $borderWidth;
+  margin-right: 10px;
+  border: $borderWidth solid black;
+
+  background: url("../../images/logo.png") no-repeat 0 0;
+  background-size: 3 * $tileSize 3 * $tileSize;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 100ms ease-in-out;
+
+  &--done {
+    opacity: 0;
+  }
+
+  &--dragging {
+    opacity: 0.5;
+  }
+
+  @for $i from 0 through 8 {
+    &--#{$i} {
+      background-position-x: $i % 3 * -$tileSize;
+      background-position-y: floor($i / 3) * -$tileSize;
+    }
+  }
+}
