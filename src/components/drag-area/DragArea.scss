@@ -10,12 +10,14 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .DragArea__drag-tile {
   height: $tileSize - 2 * $borderWidth;
   width: $tileSize - 2 * $borderWidth;
   margin-right: 10px;
+  margin-bottom: 10px;
   border: $borderWidth solid black;
 
   background: url("../../images/logo.png") no-repeat 0 0;

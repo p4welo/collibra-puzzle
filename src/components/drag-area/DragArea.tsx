@@ -33,7 +33,7 @@ export class DragArea extends React.Component<DragAreaProps, any> {
                       key={i}
                       onDragStart={(e) => this.onDragStart(e, tile)}
                       draggable>
-                {tile.id}
+                {/*{tile.id}*/}
               </span>
               ))}
         </div>

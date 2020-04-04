@@ -61,7 +61,7 @@ export class DropTile extends React.Component<DropTileProps, DropTileState> {
             onDragOver={this.onDragOver.bind(this)}
             onDragLeave={this.onDragLeave.bind(this)}
             className={this.tileClass}>
-          {tile.id} {tile.done}
+          {/*{tile.id} {tile.done}*/}
         </div>
     );
   }
