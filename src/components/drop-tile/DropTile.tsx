@@ -23,7 +23,7 @@ export class DropTile extends React.Component<DropTileProps, DropTileState> {
     const tileId = e.dataTransfer.getData('tile');
     this.setState({
       hovered: false
-    })
+    });
     this.props.onDrop(tileId);
   }
 
@@ -32,7 +32,7 @@ export class DropTile extends React.Component<DropTileProps, DropTileState> {
     e.preventDefault();
     this.setState({
       hovered: true
-    })
+    });
   }
 
   // @ts-ignore
@@ -40,7 +40,7 @@ export class DropTile extends React.Component<DropTileProps, DropTileState> {
     e.preventDefault();
     this.setState({
       hovered: false
-    })
+    });
   }
 
   get tileClass(): string {
@@ -55,14 +55,12 @@ export class DropTile extends React.Component<DropTileProps, DropTileState> {
   }
 
   render() {
-    const { tile } = this.props;
     return (
         <div onDrop={this.onDrop.bind(this)}
             onDragOver={this.onDragOver.bind(this)}
             onDragLeave={this.onDragLeave.bind(this)}
-            className={this.tileClass}>
-          {/*{tile.id} {tile.done}*/}
-        </div>
+            className={this.tileClass}
+        />
     );
   }
 }
