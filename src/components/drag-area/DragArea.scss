@@ -2,29 +2,29 @@
 @import "../../styles/variables";
 
 .DragArea {
+  align-items: center;
   background: $red;
-  min-height: 200px;
-  width: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 20px;
+  min-height: 200px;
   padding: 20px;
+  width: 300px;
 }
 
 .DragArea__drag-tile {
-  height: $tileSize - 2 * $borderWidth;
-  width: $tileSize - 2 * $borderWidth;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border: $borderWidth solid black;
-
   background: url("../../images/logo.png") no-repeat 0 0;
   background-size: 3 * $tileSize 3 * $tileSize;
-  overflow: hidden;
+  border: $borderWidth solid black;
+  height: $tileSize - 2 * $borderWidth;
+  margin-bottom: 10px;
+  margin-right: 10px;
   opacity: 1;
-  transition: opacity 100ms ease-in-out;
+  overflow: hidden;
+  transition: opacity 150ms ease-in-out;
+  width: $tileSize - 2 * $borderWidth;
 
   &--done {
     opacity: 0;

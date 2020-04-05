@@ -1,40 +1,42 @@
-import React from 'react';
+import React, { Component, DragEvent } from 'react';
 
 import { Tile } from 'model/tile.model';
 
 import './DragArea.scss';
 
 interface DragAreaProps {
-  tiles: Tile[]
+  tiles: Tile[],
+  onDragStart: (tileId: string) => void
 }
 
-export class DragArea extends React.Component<DragAreaProps, any> {
+export class DragArea extends Component<DragAreaProps, any> {
 
-  // @ts-ignore
-  onDragStart(e, tile: Tile) {
-    console.log('onDragStart', tile.id);
+  handleDragStart(e: DragEvent, tile: Tile): void {
     e.dataTransfer.setData(`tile`, tile.id);
+    this.props.onDragStart(tile.id);
   }
 
-  tileClass(tile: Tile, index: number): string {
+  tileClass(tile: Tile): string {
     return `
       DragArea__drag-tile 
-      DragArea__drag-tile--${index}
+      DragArea__drag-tile--${tile.id}
       ${tile.done ? 'DragArea__drag-tile--done' : ''}
     `;
   }
+
+
+// .sort(() => 0.5 - Math.random())
 
   render() {
     return (
         <div className='DragArea'>
           {this.props.tiles
               .map((tile, i) => (
-                  <span className={this.tileClass(tile, i)}
+                  <span className={this.tileClass(tile)}
                       key={i}
-                      onDragStart={(e) => this.onDragStart(e, tile)}
-                      draggable>
-                {/*{tile.id}*/}
-              </span>
+                      onDragStart={(e: DragEvent) => this.handleDragStart(e, tile)}
+                      draggable
+                  >{tile.id}</span>
               ))}
         </div>
     );

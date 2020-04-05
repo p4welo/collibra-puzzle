@@ -7,9 +7,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid $blue;
-  height: 3 * $tileSize;
-  width: 3 * $tileSize;
   display: flex;
+  height: 3 * $tileSize;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 20px;
+  width: 3 * $tileSize;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, DragEvent } from 'react';
 import { Tile } from 'model/tile.model';
 import './DropTile.scss';
 
@@ -11,32 +11,30 @@ interface DropTileState {
   hovered: boolean
 }
 
-export class DropTile extends React.Component<DropTileProps, DropTileState> {
+export class DropTile extends Component<DropTileProps, DropTileState> {
 
   state: DropTileState = {
     hovered: false
   };
 
-  // @ts-ignore
-  onDrop(e): void {
+  handleDrop(e: DragEvent): void {
     e.preventDefault();
     const tileId = e.dataTransfer.getData('tile');
     this.setState({
       hovered: false
     });
+    console.log('on drop', tileId);
     this.props.onDrop(tileId);
   }
 
-  // @ts-ignore
-  onDragOver(e): void {
+  handleDragOver(e: DragEvent): void {
     e.preventDefault();
     this.setState({
       hovered: true
     });
   }
 
-  // @ts-ignore
-  onDragLeave(e): void {
+  handleDragLeave(e: DragEvent): void {
     e.preventDefault();
     this.setState({
       hovered: false
@@ -56,9 +54,9 @@ export class DropTile extends React.Component<DropTileProps, DropTileState> {
 
   render() {
     return (
-        <div onDrop={this.onDrop.bind(this)}
-            onDragOver={this.onDragOver.bind(this)}
-            onDragLeave={this.onDragLeave.bind(this)}
+        <div onDrop={this.handleDrop.bind(this)}
+            onDragOver={this.handleDragOver.bind(this)}
+            onDragLeave={this.handleDragLeave.bind(this)}
             className={this.tileClass}
         />
     );

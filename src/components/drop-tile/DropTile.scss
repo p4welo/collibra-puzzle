@@ -3,9 +3,9 @@
 
 .DropTile {
   background: white;
+  border: $borderWidth solid $blue;
   height: $tileSize - 2 * $borderWidth;
   width: $tileSize - 2 * $borderWidth;
-  border: $borderWidth solid $blue;
 
   &--done {
     background: transparent;
