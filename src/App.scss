@@ -1,7 +1,21 @@
+@import "./styles/media";
+
 .App {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.App__game-content,
+.App__game-results {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 20px;
   width: 100%;
+
+  @include onTablet {
+    width: 50%;
+  }
 }

@@ -4,6 +4,7 @@ import './DropTile.scss';
 
 interface DropTileProps {
   tile: Tile;
+  finished: boolean;
   onDrop: (tileId: string) => void;
 }
 
@@ -43,11 +44,13 @@ export class DropTile extends Component<DropTileProps, DropTileState> {
 
   get tileClass(): string {
     const isDone = this.props.tile.done;
+    const isFinished = this.props.finished;
     const isHovered = !isDone && this.state.hovered;
 
     return `
       DropTile
       ${isDone ? 'DropTile--done' : ''}
+      ${isFinished ? 'DropTile--finished' : ''}
       ${isHovered ? 'DropTile--hovered' : ''}
     `;
   }

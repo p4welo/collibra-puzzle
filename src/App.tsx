@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import {
+  Congratulations,
   DragArea,
   DropArea,
   ScoreBoard,
@@ -11,7 +12,7 @@ import { isGameFinished } from 'utils/game.utils';
 
 interface AppState {
   tiles: Tile[];
-  initialized: boolean;
+  started: boolean;
   scoreboard: Score[]
 
   time: number;
@@ -25,7 +26,7 @@ export default class App extends Component<{}, AppState> {
     tiles: new Array(9)
         .fill(9)
         .map((v, i) => ({ id: String(i), done: false })),
-    initialized: false,
+    started: false,
     scoreboard: [],
     penalty: 0,
     time: 0,
@@ -38,14 +39,18 @@ export default class App extends Component<{}, AppState> {
 
   startGame(): void {
     this.setState(prevState => ({
-      initialized: true,
+      started: true,
       time: prevState.time,
       startedAt: Date.now() - prevState.time
     }));
 
-    this.timer = setInterval(() => this.setState(({ startedAt, penalty }) => ({
+    this.timer = setInterval(() => this.tick(), 1);
+  }
+
+  tick(): void {
+    this.setState(({ startedAt, penalty }) => ({
       time: Date.now() - startedAt + penalty
-    })), 1);
+    }));
   }
 
   stopTimer(): void {
@@ -78,7 +83,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   handleTileDrag(): void {
-    if (!this.state.initialized) {
+    if (!this.state.started) {
       this.startGame();
     }
   }
@@ -95,6 +100,7 @@ export default class App extends Component<{}, AppState> {
   onGameFinish(): void {
     this.stopTimer();
     this.saveScore();
+    setTimeout(() => this.resetGame(), 5000);
   }
 
   saveScore(): void {
@@ -111,17 +117,29 @@ export default class App extends Component<{}, AppState> {
   render() {
     return (
         <div className="App">
-          <Timer time={this.state.time}/>
+          <div className="App__game-content">
+            <Timer time={this.state.time}/>
 
-          <DropArea tiles={this.state.tiles}
-              onDrop={this.handleTileDrop.bind(this)}
-          />
+            <DropArea tiles={this.state.tiles}
+                finished={isGameFinished(this.state.tiles)}
+                onDrop={this.handleTileDrop.bind(this)}
+            />
 
-          <DragArea tiles={this.state.tiles}
-              onDragStart={this.handleTileDrag.bind(this)}
-          />
+            {
+              isGameFinished(this.state.tiles) &&
+              <Congratulations />
+            }
 
-          <ScoreBoard scores={this.state.scoreboard}/>
+
+            <DragArea tiles={this.state.tiles}
+                started={this.state.started}
+                onDragStart={this.handleTileDrag.bind(this)}
+            />
+          </div>
+
+          <div className="App__game-results">
+            <ScoreBoard scores={this.state.scoreboard}/>
+          </div>
         </div>
     );
   }

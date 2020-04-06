@@ -5,6 +5,7 @@
   background: white;
   border: $borderWidth solid $blue;
   height: $tileSize - 2 * $borderWidth;
+  transition: border-color 300ms ease-in-out;
   width: $tileSize - 2 * $borderWidth;
 
   &--done {
@@ -13,5 +14,9 @@
 
   &--hovered {
     background: yellow;
+  }
+
+  &--finished {
+    border-color: transparent;
   }
 }

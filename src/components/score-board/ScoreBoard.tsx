@@ -10,20 +10,35 @@ export class ScoreBoard extends Component<ScoreBoardProps, any> {
   render() {
     const { scores = [] } = this.props;
     return (
-        <>
-          <h3>Scoreboard:</h3>
-          {
-            scores.length > 0 ?
-                scores
-                    .sort((score) => score.value)
-                    .map((score: Score, i: number) =>
-                        <p key={i}>
-                          <strong>Place {i+1}</strong>: {score.value}ms
-                        </p>
-                    ) :
-                <p>No results yet.</p>
-          }
-        </>
+        <div className='ScoreBoard'>
+          <h3 className='ScoreBoard__header'>Scoreboard:</h3>
+
+          <table className='ScoreBoard__table'>
+            <thead>
+            <tr>
+              <th>Attempt No</th>
+              <th>Time</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {
+              scores.length > 0 ?
+                  scores
+                      .map((score: Score, i: number) =>
+                          <tr key={i}>
+                            <td>{i + 1}</td>
+                            <td>{score.value} ms</td>
+                          </tr>
+                      ) :
+
+                  <tr>
+                    <td colSpan={2}>No results yet.</td>
+                  </tr>
+            }
+            </tbody>
+          </table>
+        </div>
     );
   }
 }
