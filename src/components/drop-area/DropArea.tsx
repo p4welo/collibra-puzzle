@@ -9,7 +9,11 @@ interface DropAreaProps {
   onDrop: (sourceId: string, destinationId: string) => void;
 }
 
-export class DropArea extends Component<DropAreaProps, any> {
+export class DropArea extends Component<DropAreaProps> {
+
+  shouldComponentUpdate(nextProps: DropAreaProps): boolean {
+    return this.props.tiles !== nextProps.tiles;
+  }
 
   renderTile(tile: Tile, index: number) {
     return <DropTile key={index}
@@ -22,7 +26,7 @@ export class DropArea extends Component<DropAreaProps, any> {
     return (
         <div className='DropArea'>
           {this.props.tiles
-              .sort((t1, t2) => +t1.id - +t2.id)
+              // .sort((t1, t2) => +t1.id - +t2.id)
               .map((tile, i) => this.renderTile(tile, i))}
         </div>
     );

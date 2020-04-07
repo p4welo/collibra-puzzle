@@ -1,4 +1,4 @@
-import React, { Component, DragEvent } from 'react';
+import React, { DragEvent, Component } from 'react';
 
 import { Tile } from 'model/tile.model';
 
@@ -10,9 +10,13 @@ interface DragAreaProps {
   onDragStart: (tileId: string) => void
 }
 
-export class DragArea extends Component<DragAreaProps, any> {
+export class DragArea extends Component<DragAreaProps, {}> {
 
-  // componentDidMount(): void {
+  shouldComponentUpdate(nextProps: DragAreaProps): boolean {
+    return this.props.tiles !== nextProps.tiles;
+  }
+
+                            // componentDidMount(): void {
   //   this.shuffle();
   // }
 
@@ -39,11 +43,7 @@ export class DragArea extends Component<DragAreaProps, any> {
     `;
   }
 
-
-  // .sort(() => 0.5 - Math.random())
-
   render() {
-    console.log('render');
     return (
         <div className='DragArea'>
           {this.props.tiles

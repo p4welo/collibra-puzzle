@@ -14,7 +14,6 @@ interface AppState {
   tiles: Tile[];
   started: boolean;
   scoreboard: Score[]
-
   time: number;
   penalty: number;
   startedAt: number;
@@ -125,11 +124,7 @@ export default class App extends Component<{}, AppState> {
                 onDrop={this.handleTileDrop.bind(this)}
             />
 
-            {
-              isGameFinished(this.state.tiles) &&
-              <Congratulations />
-            }
-
+            <Congratulations finished={isGameFinished(this.state.tiles)}/>
 
             <DragArea tiles={this.state.tiles}
                 started={this.state.started}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './ScoreBoard.scss';
 import { Score } from 'model';
 
@@ -6,7 +6,8 @@ interface ScoreBoardProps {
   scores: Score[];
 }
 
-export class ScoreBoard extends Component<ScoreBoardProps, any> {
+export class ScoreBoard extends PureComponent<ScoreBoardProps> {
+
   render() {
     const { scores = [] } = this.props;
     return (
