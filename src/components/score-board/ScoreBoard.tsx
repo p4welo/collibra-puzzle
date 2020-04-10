@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import './ScoreBoard.scss';
-import { Score } from 'model';
 
 interface ScoreBoardProps {
-  scores: Score[];
+  scores: number[];
 }
 
 export class ScoreBoard extends PureComponent<ScoreBoardProps> {
@@ -26,10 +25,10 @@ export class ScoreBoard extends PureComponent<ScoreBoardProps> {
             {
               scores.length > 0 ?
                   scores
-                      .map((score: Score, i: number) =>
-                          <tr key={i}>
+                      .map((score: number, i: number) =>
+                          <tr key={i} data-testid='score-row'>
                             <td>{i + 1}</td>
-                            <td>{score.value} ms</td>
+                            <td>{score} ms</td>
                           </tr>
                       ) :
 

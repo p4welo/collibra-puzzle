@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer component should match snapshot 1`] = `
+<div
+  class="Timer"
+>
+  <h3>
+    Your time:
+  </h3>
+  <h2>
+    12345
+     ms
+  </h2>
+</div>
+`;

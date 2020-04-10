@@ -15,7 +15,9 @@ export class Congratulations extends PureComponent<CongratulationsProps> {
           </div>
       );
     } else {
-      return <></>;
+      return (
+          <span></span>
+      );
     }
   }
 }

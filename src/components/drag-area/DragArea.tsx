@@ -6,34 +6,20 @@ import './DragArea.scss';
 
 interface DragAreaProps {
   tiles: Tile[],
-  started: boolean;
+  order: number[],
   onDragStart: (tileId: string) => void
 }
 
-export class DragArea extends Component<DragAreaProps, {}> {
+export class DragArea extends Component<DragAreaProps> {
 
   shouldComponentUpdate(nextProps: DragAreaProps): boolean {
     return this.props.tiles !== nextProps.tiles;
   }
 
-                            // componentDidMount(): void {
-  //   this.shuffle();
-  // }
-
-  // componentDidUpdate(prevProps: Readonly<DragAreaProps>, prevState: Readonly<any>, snapshot?: any): void {
-  //   if (prevProps.started !== this.props.started) {
-  //     console.log('started', prevProps.started, this.props.started);
-  //   }
-  // }
-
   handleDragStart(e: DragEvent, tile: Tile): void {
     e.dataTransfer.setData(`tile`, tile.id);
     this.props.onDragStart(tile.id);
   }
-
-  // shuffle(): void {
-  //
-  // }
 
   tileClass(tile: Tile): string {
     return `
@@ -46,14 +32,17 @@ export class DragArea extends Component<DragAreaProps, {}> {
   render() {
     return (
         <div className='DragArea'>
-          {this.props.tiles
-              .map((tile, i) => (
-                  <span className={this.tileClass(tile)}
-                      key={i}
-                      onDragStart={(e: DragEvent) => this.handleDragStart(e, tile)}
-                      draggable
-                  >{tile.id}</span>
-              ))}
+          {
+            this.props.order
+                .map((id: number) => this.props.tiles[id])
+                .map((tile: Tile, i: number) => (
+                    <span className={this.tileClass(tile)}
+                        key={i}
+                        onDragStart={(e: DragEvent) => this.handleDragStart(e, tile)}
+                        draggable
+                    ></span>
+                ))
+          }
         </div>
     );
   }

@@ -21,31 +21,31 @@ export class DropTile extends Component<DropTileProps, DropTileState> {
   shouldComponentUpdate(nextProps: Readonly<DropTileProps>, nextState: Readonly<DropTileState>): boolean {
     return this.state.hovered !== nextState.hovered ||
         this.props.finished !== nextProps.finished ||
-        this.props.tile !== nextProps.tile
+        this.props.tile !== nextProps.tile;
   }
 
-  handleDrop(e: DragEvent): void {
+  handleDrop = (e: DragEvent) => {
     e.preventDefault();
     const tileId = e.dataTransfer.getData('tile');
     this.setState({
       hovered: false
     });
     this.props.onDrop(tileId);
-  }
+  };
 
-  handleDragOver(e: DragEvent): void {
+  handleDragOver = (e: DragEvent) => {
     e.preventDefault();
     this.setState({
       hovered: true
     });
-  }
+  };
 
-  handleDragLeave(e: DragEvent): void {
+  handleDragLeave = (e: DragEvent) => {
     e.preventDefault();
     this.setState({
       hovered: false
     });
-  }
+  };
 
   get tileClass(): string {
     const isDone = this.props.tile.done;
@@ -62,11 +62,12 @@ export class DropTile extends Component<DropTileProps, DropTileState> {
 
   render() {
     return (
-        <div onDrop={this.handleDrop.bind(this)}
-            onDragOver={this.handleDragOver.bind(this)}
-            onDragLeave={this.handleDragLeave.bind(this)}
-            className={this.tileClass}
-        />
+        <div className={this.tileClass}
+            onDrop={this.handleDrop}
+            onDragOver={this.handleDragOver}
+            onDragLeave={this.handleDragLeave}
+            data-testid='drop-tile'
+        ></div>
     );
   }
 }

@@ -7,24 +7,25 @@ import {
   ScoreBoard,
   Timer
 } from 'components';
-import { Tile, Score } from 'model';
-import { isGameFinished } from 'utils/game.utils';
+import { Tile } from 'model';
+import { getShuffledOrder, isGameFinished } from 'utils/game.utils';
 
 interface AppState {
   tiles: Tile[];
+  tileOrder: number[];
   started: boolean;
-  scoreboard: Score[]
+  scoreboard: number[]
   time: number;
   penalty: number;
   startedAt: number;
 }
 
 export default class App extends Component<{}, AppState> {
-
   initialState: AppState = {
     tiles: new Array(9)
         .fill(9)
         .map((v, i) => ({ id: String(i), done: false })),
+    tileOrder: getShuffledOrder(9),
     started: false,
     scoreboard: [],
     penalty: 0,
@@ -59,6 +60,7 @@ export default class App extends Component<{}, AppState> {
   resetGame(): void {
     this.setState((prevState) => ({
       ...this.initialState,
+      tileOrder: getShuffledOrder(9),
       scoreboard: prevState.scoreboard
     }));
   }
@@ -81,14 +83,13 @@ export default class App extends Component<{}, AppState> {
     });
   }
 
-  handleTileDrag(): void {
+  handleTileDrag = () => {
     if (!this.state.started) {
       this.startGame();
     }
-  }
+  };
 
   handleTileDrop(sourceId: string, destinationId: string): void {
-    console.log(sourceId, destinationId);
     if (sourceId === destinationId) {
       this.setTileAsDone(sourceId);
     } else {
@@ -106,29 +107,28 @@ export default class App extends Component<{}, AppState> {
     this.setState((prevState: AppState) => ({
       scoreboard: [
         ...prevState.scoreboard,
-        {
-          date: new Date(),
-          value: prevState.time
-        }]
+        prevState.time
+      ]
     }));
   }
 
   render() {
+    const isFinished = isGameFinished(this.state.tiles);
     return (
         <div className="App">
           <div className="App__game-content">
             <Timer time={this.state.time}/>
 
             <DropArea tiles={this.state.tiles}
-                finished={isGameFinished(this.state.tiles)}
+                finished={isFinished}
                 onDrop={this.handleTileDrop.bind(this)}
             />
 
-            <Congratulations finished={isGameFinished(this.state.tiles)}/>
+            <Congratulations finished={isFinished}/>
 
             <DragArea tiles={this.state.tiles}
-                started={this.state.started}
-                onDragStart={this.handleTileDrag.bind(this)}
+                order={this.state.tileOrder}
+                onDragStart={this.handleTileDrag}
             />
           </div>
 

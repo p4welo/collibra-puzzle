@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropTile component should match snapshot when the game is finished 1`] = `
+<div
+  class="
+      DropTile
+      DropTile--done
+      DropTile--finished
+      
+    "
+  data-testid="drop-tile"
+/>
+`;
+
+exports[`DropTile component should match snapshot when the game is not finished and tile is not placed correctly 1`] = `
+<div
+  class="
+      DropTile
+      
+      
+      
+    "
+  data-testid="drop-tile"
+/>
+`;
+
+exports[`DropTile component should match snapshot when the game is not finished and tile is placed correctly 1`] = `
+<div
+  class="
+      DropTile
+      DropTile--done
+      
+      
+    "
+  data-testid="drop-tile"
+/>
+`;

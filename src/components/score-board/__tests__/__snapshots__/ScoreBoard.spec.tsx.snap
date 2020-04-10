@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScoreBoard component should match snapshot 1`] = `
+<div
+  class="ScoreBoard"
+>
+  <h3
+    class="ScoreBoard__header"
+  >
+    Scoreboard:
+  </h3>
+  <table
+    class="ScoreBoard__table"
+  >
+    <thead>
+      <tr>
+        <th>
+          Attempt No
+        </th>
+        <th>
+          Time
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        data-testid="score-row"
+      >
+        <td>
+          1
+        </td>
+        <td>
+          10000
+           ms
+        </td>
+      </tr>
+      <tr
+        data-testid="score-row"
+      >
+        <td>
+          2
+        </td>
+        <td>
+          9000
+           ms
+        </td>
+      </tr>
+      <tr
+        data-testid="score-row"
+      >
+        <td>
+          3
+        </td>
+        <td>
+          8000
+           ms
+        </td>
+      </tr>
+      <tr
+        data-testid="score-row"
+      >
+        <td>
+          4
+        </td>
+        <td>
+          7000
+           ms
+        </td>
+      </tr>
+      <tr
+        data-testid="score-row"
+      >
+        <td>
+          5
+        </td>
+        <td>
+          11000
+           ms
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
