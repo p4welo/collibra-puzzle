@@ -34,5 +34,5 @@ describe('getShuffledOrder', () => {
           result[element] = true;
         });
     expect(Object.keys(result).length).toEqual(amount);
-  })
+  });
 });

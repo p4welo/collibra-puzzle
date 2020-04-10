@@ -1,6 +1,7 @@
-import { doneTilesMock, tileOrderMock } from 'model/__mocks__/tile';
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
+
+import { doneTilesMock, tileOrderMock } from 'model/__mocks__/tile';
 import { DragArea } from '../DragArea';
 
 describe('DragArea component', () => {

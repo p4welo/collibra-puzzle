@@ -5,7 +5,7 @@ interface TimerProps {
   time: number
 }
 
-export class Timer extends Component<TimerProps>{
+export class Timer extends Component<TimerProps> {
   render() {
     return (
         <div className='Timer'>

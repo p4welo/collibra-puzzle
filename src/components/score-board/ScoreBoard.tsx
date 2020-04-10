@@ -6,7 +6,6 @@ interface ScoreBoardProps {
 }
 
 export class ScoreBoard extends PureComponent<ScoreBoardProps> {
-
   render() {
     const { scores = [] } = this.props;
     return (

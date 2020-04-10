@@ -1,7 +1,8 @@
-import { doneTilesMock, freshTilesMock } from 'model/__mocks__/tile';
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
+
 import App from 'App';
+import { doneTilesMock, freshTilesMock } from 'model/__mocks__/tile';
 
 describe('App component', () => {
   let wrapper: ShallowWrapper;
@@ -77,7 +78,7 @@ describe('App component', () => {
 
     afterEach(() => {
       global.Date = storedDate;
-    })
+    });
   });
 
   describe('when placing the last tile on correct place', () => {
@@ -112,7 +113,7 @@ describe('App component', () => {
     });
   });
 
-  it('should stop the timer on component unmount', ()  => {
+  it('should stop the timer on component unmount', () => {
     wrapper.unmount();
     expect(clearInterval).toHaveBeenCalledTimes(1);
   });
